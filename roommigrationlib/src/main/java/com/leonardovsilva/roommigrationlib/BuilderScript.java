@@ -4,29 +4,30 @@ import androidx.room.Entity;
 
 import java.util.List;
 
-interface IBuilderScriptApi<T> {
-    public IBuilderScriptQuery init(T roomClass) throws ExceptionRoomApi;
 
-    public BuilderScript build();
-}
+public class BuilderScript<T> implements BuilderFluentInterface.IBuilderScriptApi<T> {
 
-interface IBuilderScriptQuery {
-    public IBuilderScriptApi script(List<String> scripts);
-}
-
-public class BuilderScript<T> implements IBuilderScriptApi<T> {
+    private BuilderScriptQuery builderScriptQuery;
 
     @Override
-    public IBuilderScriptQuery init(T roomClass) throws ExceptionRoomApi {
+    public BuilderFluentInterface.IBuilderScriptQuery init(T roomClass) throws ExceptionRoomApi {
         if (!roomClass.getClass().isAnnotationPresent(Entity.class)) {
             throw new ExceptionRoomApi("Room entity Annotation is not present.",
                     ErrorCode.NOTFOUND);
         }
-        return null;
+
+        builderScriptQuery = new BuilderScriptQuery(this);
+
+        return builderScriptQuery;
     }
 
     @Override
-    public BuilderScript build() {
+    public BuilderScript build() throws ExceptionRoomApi {
+        if (this.builderScriptQuery == null || !this.builderScriptQuery.existsScriptInList()) {
+            throw new ExceptionRoomApi("Empty query scripts in current BuilderScript.",
+                    ErrorCode.EMPTY);
+        }
+
         return this;
     }
 }

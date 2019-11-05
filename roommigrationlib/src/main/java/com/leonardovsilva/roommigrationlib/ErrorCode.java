@@ -1,5 +1,5 @@
 package com.leonardovsilva.roommigrationlib;
 
 public enum ErrorCode {
-    UNKNOW, NOTFOUND
+    UNKNOW, NOTFOUND, EMPTY
 }

@@ -28,7 +28,7 @@ public class RoomLibraryMigration implements IRoomLibraryMigration {
     }
 
     private void startLibrary() {
-
+        //TODO start class scanner to create instance migrations classes
     }
 
 }

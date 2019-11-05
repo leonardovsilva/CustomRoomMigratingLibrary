@@ -29,7 +29,10 @@ public class ExampleInstrumentedTest {
         List<String> teste = null;
         List<BuilderScript> builderList = null;
 
+        try {
+            builderList.add(new BuilderScript<Context>().init(appContext).script(teste).build());
+        }catch (ExceptionRoomApi ex){
 
-        builderList.add(new BuilderScript<Context>().init(appContext).script(teste).build());
+        }
     }
 }
