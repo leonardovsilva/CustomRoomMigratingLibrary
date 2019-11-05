@@ -8,6 +8,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -23,5 +25,11 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         assertEquals("com.leonardovsilva.roommigrationlib.test", appContext.getPackageName());
+
+        List<String> teste = null;
+        List<BuilderScript> builderList = null;
+
+
+        builderList.add(new BuilderScript<Context>().init(appContext).script(teste).build());
     }
 }
