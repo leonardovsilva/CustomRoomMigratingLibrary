@@ -2,19 +2,19 @@ package com.leonardovsilva.roommigrationlib;
 
 public class ExceptionRoomApi extends Exception {
 
-    private final ErrorCode code;
+    private final ErrorStatus code;
 
-    public ExceptionRoomApi(String message, Throwable cause, ErrorCode code) {
+    public ExceptionRoomApi(String message, Throwable cause, ErrorStatus code) {
         super(message, cause);
         this.code = code;
     }
 
-    public ExceptionRoomApi(String message, ErrorCode code) {
+    public ExceptionRoomApi(String message, ErrorStatus code) {
         super(message);
         this.code = code;
     }
 
-    public ErrorCode getCode() {
+    public ErrorStatus getCode() {
         return this.code;
     }
 

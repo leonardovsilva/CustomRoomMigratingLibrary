@@ -12,16 +12,18 @@ public class RoomLibraryMigration implements IRoomLibraryMigration {
         this.dataBaseName = dataBaseName;
     }
 
-    public IRoomLibraryMigration init() {
+    public IRoomLibraryMigration init() throws ExceptionRoomApi {
         if (this.context != null &&
                 RoomDataBaseInstance.getInstance(this.context, this.dataBaseName) != null) {
             startLibrary();
         }
         else if(this.context == null){
-            //TODO throw new exception
+            throw new ExceptionRoomApi("Application context not found.",
+                    ErrorStatus.NOTFOUND);
         }
         else {
-            //TODO throw new exception
+            throw new ExceptionRoomApi("Unknown error.",
+                    ErrorStatus.UNKNOWN);
         }
 
         return this;
